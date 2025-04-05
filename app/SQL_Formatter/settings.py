@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'rest_framework',
     'user',
     'formatter',
+    'drf_spectacular',
 ]
 
 MIDDLEWARE = [
@@ -78,8 +79,12 @@ WSGI_APPLICATION = 'SQL_Formatter.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'postgres',
+        'USER': 'postgres',
+        'PASSWORD': 'superstrongpassword',
+        'HOST': 'db',
+        'PORT': 5432
     }
 }
 
@@ -122,5 +127,9 @@ STATIC_URL = 'static/'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
+
+REST_FRAMEWORK = {
+    "DEFAULT_SCHEMA_CLASS": "drf_spectacular.openapi.AutoSchema",
+}
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'

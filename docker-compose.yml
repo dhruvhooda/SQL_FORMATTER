@@ -1,0 +1,22 @@
+services:
+  web:
+    build: .
+    command: python app/manage.py runserver 0.0.0.0:8000
+    volumes:
+      - .:/app
+    ports:
+      - "8080:8000"
+    depends_on:
+      - db
+
+  db:
+    image: postgres
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_DB=db
+      - POSTGRES_PASSWORD=superstrongpassword
+      - POSTGRES_USER=postgres
+
+volumes:
+  postgres_data:
