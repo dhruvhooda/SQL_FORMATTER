@@ -3,7 +3,7 @@ from django.urls import reverse
 from rest_framework import status
 
 
-FORMAT_QUERY_URL = reverse('formatter:format')
+FORMAT_QUERY_URL = reverse('formatter:formatter')
 
 class FormatAPITestCase(APITestCase):
 
