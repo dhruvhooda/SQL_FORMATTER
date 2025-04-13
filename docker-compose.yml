@@ -1,13 +1,22 @@
 services:
   web:
     build: .
-    command: python app/manage.py runserver 0.0.0.0:8000
+    command: >
+      sh -c "python app/manage.py migrate &&
+      python app/manage.py runserver 0.0.0.0:8000"
     volumes:
       - .:/app
     ports:
       - "8080:8000"
     depends_on:
       - db
+      - ollama
+
+  ollama:
+    image: ollama/ollama
+    command: serve
+    ports:
+      - "11434:11434"
 
   db:
     image: postgres

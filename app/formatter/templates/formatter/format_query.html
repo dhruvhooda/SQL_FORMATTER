@@ -1,0 +1,35 @@
+<!-- formatter/query_form.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>SQL Formatter</title>
+</head>
+<body>
+    <h1>SQL Formatter</h1>
+
+    <form method="POST">
+        {% csrf_token %}
+        <label for="raw_Query">Enter SQL Query:</label><br>
+        <textarea name="raw_Query" id="raw_Query" rows="8" cols="80"></textarea><br>
+        <button type="submit">Format</button>
+    </form>
+
+    {% if formatted_Query %}
+        <h2>Formatted SQL:</h2>
+        <pre>{{ formatted_Query }}</pre>
+    {% endif %}
+
+    <h2>Previous Queries</h2>
+    <ul>
+        {% for q in queries %}
+            <li>
+                <strong>Raw:</strong> <pre>{{ q.raw_Query }}</pre>
+                <strong>Formatted:</strong> <pre>{{ q.formatted_Query }}</pre>
+            </li>
+        {% empty %}
+            <li>No previous queries.</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
