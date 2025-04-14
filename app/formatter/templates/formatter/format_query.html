@@ -1,4 +1,3 @@
-<!-- formatter/query_form.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -14,11 +13,6 @@
         <textarea name="raw_Query" id="raw_Query" rows="8" cols="80"></textarea><br>
         <button type="submit">Format</button>
     </form>
-
-    {% if formatted_Query %}
-        <h2>Formatted SQL:</h2>
-        <pre>{{ formatted_Query }}</pre>
-    {% endif %}
 
     <h2>Previous Queries</h2>
     <ul>
