@@ -11,6 +11,13 @@ import ollama
 
 # Create your views here
 
+def llm_format(raw_Query):
+    client = ollama.Client('http://ollama:11434')
+    prompt = f"Correctly format this SQL Query without saying anything else: {raw_Query}"
+    response = client.generate(model='llama3:8b',prompt=prompt)
+    formatted_Query = response.get('response','Ollama provided no response, try again')
+    return formatted_Query
+
 @extend_schema(
         request = QuerySerializer,
         responses = QuerySerializer
@@ -23,10 +30,7 @@ def format_query_view(request):
         serializer_class = QuerySerializer(data=request.data)
         if serializer_class.is_valid():
             raw_Query = serializer_class.validated_data['raw_Query']
-            client = ollama.Client('http://ollama:11434')
-            prompt = f"Correctly format this SQL Query without saying anything else: {raw_Query}"
-            response = client.generate(model='llama3:8b',prompt=prompt)
-            formatted_Query = response.get('response','Ollama provided no response, try again')
+            formatted_Query = llm_format(raw_Query)
             query_instance = Query(raw_Query=raw_Query,formatted_Query=formatted_Query,user=request.user)
             query_instance.save()
             if "text/html" in request.META.get("HTTP_ACCEPT", ""):
