@@ -16,7 +16,9 @@ class FormatAPITestCase(APITestCase):
         self.user = create_user()
         self.client.force_authenticate(user=self.user)
 
-    def test_creating_query(self):
+    @mock.patch('formatter.views.llm_format')
+    def test_creating_query(self, mock_llm_format):
+        mock_llm_format.return_value = "some formatted SQL"
         payload = {
             'raw_Query': "select a.id,b.name from users a join user_profiles b on a.id=b.user_id where a.status='active'and b.country='USA';"
         }
