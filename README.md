@@ -20,10 +20,15 @@
 ## Installation and Setup
 
 ### 1. Clone the repository:
-
+SSH:
 ```bash
-git clone https://github.com/your-username/sql-formatter-llm.git
-cd SQL_formatter
+git clone git@github.com:dhruvhooda/SQL_FORMATTER.git
+cd SQL_FORMATTER
+```
+HTTP:
+```bash
+git clone https://github.com/dhruvhooda/SQL_FORMATTER.git
+cd SQL_FORMATTER
 ```
 
 ### 2. Install Docker (if not installed):
@@ -32,11 +37,12 @@ Follow the instructions at [Docker's official website](https://www.docker.com/ge
 
 ### 3. Setup Environment Variables:
 
-Ensure that you have the **Ollama3 8B** model pulled and running locally. You can do this by running:
+Ensure that you have the **Ollama3 8B** model pulled. You can do this by running:
 
 ```bash
-ollama run ollama3
+docker-compose run ollama /bin/ollama pull llama3:8b
 ```
+(the excessive line is due to ollama being containerized)
 
 ### 4. Build and Run with Docker:
 
@@ -85,7 +91,7 @@ docker-compose build
 ### Run Unit Tests:
 
 ```bash
-docker-compose exec web python app/manage.py test ___
+docker-compose run web python app/manage.py test ___
 ```
 
 This will run the tests based off which application you are testing, replace the ___ with which application you wish to test.
@@ -107,22 +113,16 @@ This will run the tests based off which application you are testing, replace the
 ### Core Components
 
 1. **LLM Integration**:
-   - **Ollama3 8B** is used to format SQL queries. A dedicated service module (`services/llm_formatter.py`) handles communication with the Ollama API. This module crafts a prompt, sends it to Ollama, and processes the response.
+   - **Ollama3 8B** is used to format SQL queries. It was preferred due to it's lack of need for an API key allowing for simplier setup process, and is placed in a function so mocking would be easier to impliment.
 
-2. **Django Views**:
-   - A class-based view (`views.py`) handles both web form submissions and API requests. The view:
-     - Accepts a raw SQL query from the user.
-     - Passes it to the LLM service for formatting.
-     - Returns the formatted SQL back to the user via the web interface or API.
-
-3. **REST API**:
+2. **REST API**:
    - The REST API endpoint `/api/format-sql/` accepts a `POST` request with a raw SQL query and returns the formatted query.
    - The API is built using **Django Rest Framework** (DRF), providing easy serialization and documentation through Swagger.
 
-4. **Docker**:
+3. **Docker**:
    - The project is containerized using Docker to provide an easy-to-setup, consistent development environment. Docker Compose orchestrates the services.
 
-5. **Testing**:
+4. **Testing**:
    - **Unit Tests**: Validates functionality of individual components like the prompt generator and API responses.
    - **Integration Tests**: Ensures that all parts of the system (front-end, back-end, LLM integration) work together correctly.
 
