@@ -35,22 +35,14 @@ cd SQL_FORMATTER
 
 Follow the instructions at [Docker's official website](https://www.docker.com/get-started) to install Docker.
 
-### 3. Setup Environment Variables:
 
-Ensure that you have the **Ollama3 8B** model pulled. You can do this by running:
-
-```bash
-docker-compose run ollama /bin/ollama pull llama3:8b
-```
-(the excessive line is due to ollama being containerized)
-
-### 4. Build and Run with Docker:
+### 3. Build and Run with Docker:
 
 ```bash
 docker-compose up
 ```
 
-This will build the project, set up the containers, and start the application.
+This will build the project, set up the containers, pull ollama, and start the application.
 
 to Simply build the container use:
 

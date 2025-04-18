@@ -10,14 +10,17 @@ from django.contrib.auth.decorators import login_required
 import ollama
 
 # Create your views here
-
+"""Formats the Query using SQL"""
 def llm_format(raw_Query):
-    client = ollama.Client('http://ollama:11434')
+    client = ollama.Client(host='http://ollama:11434')
     prompt = f"Correctly format this SQL Query without saying anything else: {raw_Query}"
     response = client.generate(model='llama3:8b',prompt=prompt)
     formatted_Query = response.get('response','Ollama provided no response, try again')
     return formatted_Query
 
+
+
+"""Takes in a Post or Get request, and returns a formatted query, or all previous queries"""
 @extend_schema(
         request = QuerySerializer,
         responses = QuerySerializer

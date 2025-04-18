@@ -14,9 +14,12 @@ services:
 
   ollama:
     image: ollama/ollama
-    command: serve
+    entrypoint: /bin/bash /entrypoint.sh
     ports:
       - "11434:11434"
+    volumes:
+      - ./entrypoint.sh:/entrypoint.sh
+      - ollama_data:/root/.ollama
 
   db:
     image: postgres
@@ -31,3 +34,4 @@ services:
 
 volumes:
   postgres_data:
+  ollama_data:
