@@ -39,8 +39,11 @@ Follow the instructions at [Docker's official website](https://www.docker.com/ge
 ### 3. Build and Run with Docker:
 
 
-**IF YOU ARE USING WINDOWS**
-   - Go to entrypoint.sh and change the End of Line Sequence to LF from CRLF, and save the file.
+**If you are using Windows**
+
+- Go to entrypoint.sh and change the End of Line Sequence to LF from CRLF, and save the file.
+
+**If you are using Mac or intialized the SH file on your windows machine**
 
 ```bash
 docker-compose up
@@ -112,14 +115,17 @@ This will run the tests based off which application you are testing, replace the
    - **Ollama3 8B** is used to format SQL queries. It was preferred due to it's lack of need for an API key allowing for simplier setup process, and is placed in a function so mocking would be easier to impliment.
 
 2. **User API**
+   - Built using Djangos built in User authentication, allowing for simplicity and easy debugging.
 
+3. **Formatter API**
+   - Built using Djangos DRF toolkit, allowing for easier setup.
 
 3. **Docker**:
    - The project is containerized using Docker to provide an easy-to-setup, consistent development environment. Docker Compose orchestrates the services.
 
 4. **Testing**:
-   - **Unit Tests**: Validates functionality of individual components like the prompt generator and API responses.
-   - **Integration Tests**: Ensures that all parts of the system (front-end, back-end, LLM integration) work together correctly.
+   - **Unit Tests**: Validates functionality of individual components like the User API and Formatter API.
+   - **Integration Tests**: Ensures that all parts of the system work together correctly.
 
 ### Key Technologies:
 - **Django**: Framework for building the web application and REST API.
@@ -135,21 +141,12 @@ This will run the tests based off which application you are testing, replace the
    - Add a feature to store the history of formatted queries in the database, allowing users to review past submissions.
 
 2. **Advanced Error Handling**:
-   - Enhance error handling for different failure scenarios, including invalid SQL queries or API issues.
+   - Enhance error handling for different failure scenarios.
 
-3. **API Rate Limiting**:
-   - Implement rate limiting for the API to prevent abuse.
-
-4. **Pagination/CRUD for History**:
-   - Add pagination and CRUD operations for managing saved SQL query history.
-
-5. **Performance Enhancements**:
+3. **Performance Enhancements**:
    - Optimize communication between the Django app and Ollama for handling large queries and reducing latency.
 
-6. **Better SQL Formatting Rules**:
-   - Improve the LLM prompt to generate even more readable SQL formats based on community-established best practices.
-
-7. **Custom SQL Formatting Settings**:
+4. **Custom SQL Formatting Settings**:
    - Allow users to configure how SQL queries should be formatted (e.g., line breaks, indentation style).
 
 ---
@@ -157,3 +154,10 @@ This will run the tests based off which application you are testing, replace the
 ## Author
 
 Built by **Dhruv (dhruv@galactica.gg)**.
+
+---
+
+## Resources
+
+   - https://www.django-rest-framework.org/
+   - https://docs.djangoproject.com/en/5.2/
