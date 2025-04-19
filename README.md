@@ -38,6 +38,10 @@ Follow the instructions at [Docker's official website](https://www.docker.com/ge
 
 ### 3. Build and Run with Docker:
 
+
+**IF YOU ARE USING WINDOWS**
+   - Go to entrypoint.sh and change the End of Line Sequence to LF from CRLF, and save the file.
+
 ```bash
 docker-compose up
 ```
@@ -107,9 +111,8 @@ This will run the tests based off which application you are testing, replace the
 1. **LLM Integration**:
    - **Ollama3 8B** is used to format SQL queries. It was preferred due to it's lack of need for an API key allowing for simplier setup process, and is placed in a function so mocking would be easier to impliment.
 
-2. **REST API**:
-   - The REST API endpoint `/api/format-sql/` accepts a `POST` request with a raw SQL query and returns the formatted query.
-   - The API is built using **Django Rest Framework** (DRF), providing easy serialization and documentation through Swagger.
+2. **User API**
+
 
 3. **Docker**:
    - The project is containerized using Docker to provide an easy-to-setup, consistent development environment. Docker Compose orchestrates the services.

@@ -6,8 +6,8 @@ pid=$!
 
 sleep 5
 
-echo "🔴 Retrieve LLAMA3 model..."
+echo "🔴 Do not run localhost yet, pulling The model 🔴"
 ollama pull llama3:8b
-echo "🟢 Done!"
+echo "🟢 Model pulled, you are now allowed to run the localhost 🟢"
 
 wait $pid
