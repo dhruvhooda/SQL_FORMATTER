@@ -66,6 +66,18 @@ Be sure to wait until you see 🟢 Model pulled, you are now allowed to run the 
 - You'll then be redirected to a results page
 - Past formatted SQL queries will be displayed below the input form.
 - To logout, go back to http://localhost:8080/login
+---
+## Managing Users
+
+Create a superuser using
+
+```bash
+docker-compose run web python app/manage.py createsuperuser
+```
+
+And login using http://localhost:8080/admin/
+
+there, you can manage all your users, including deletion.
 
 ---
 
