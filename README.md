@@ -2,7 +2,7 @@
 
 ## Overview
 
-**SQL Formatter** is a web application built using **Django** that formats raw SQL queries into a neat, readable format using a **Language Learning Model (LLM)**. This project integrates the **Ollama3 8B model** for SQL formatting and supports both a web interface and REST API for SQL formatting.
+**SQL Formatter** is a web application built using  **Django**  and **DRF** that formats raw SQL queries into a neat, readable format using a **Language Learning Model (LLM)**. This project integrates the **Ollama3 8B model** for SQL formatting and supports both a web interface and REST API for SQL formatting.
 
 ---
 
@@ -13,23 +13,21 @@
 - **LLM Integration**: Uses **Ollama3 8B** for reformatting SQL queries.
 - **Testing**: Unit and integration tests for validating functionality.
 - **Dockerized**: Easy-to-setup environment with Docker.
-- **Authorization**: Required User Auth via JWT tokens which as well allows for Queries saved per user.
+- **Authorization**: Required User Auth via JWT tokens and Session cookies, which as well allows for Queries saved per user.
 
 ---
 
 ## Installation and Setup
 
 ### 1. Clone the repository:
-SSH:
-```bash
-git clone git@github.com:dhruvhooda/SQL_FORMATTER.git
-cd SQL_FORMATTER
-```
+
 HTTP:
 ```bash
 git clone https://github.com/dhruvhooda/SQL_FORMATTER.git
 cd SQL_FORMATTER
 ```
+
+Be sure to do this in terminal(VsCode is best)
 
 ### 2. Install Docker (if not installed):
 
@@ -39,6 +37,7 @@ Follow the instructions at [Docker's official website](https://www.docker.com/ge
 
 ### 3. Build and Run with Docker:
 
+This Application requires a bit of power due to its usage of a LLM, ensure your machine is clean and ready to go. If any errors occur, attempt to restart your machine and retry the application.
 
 **If you are using Windows**
 
@@ -52,18 +51,14 @@ docker-compose up
 
 This will build the project, set up the containers, pull ollama, and start the application.
 
-to Simply build the container use:
-
-```bash
-docker-compose build
-```
-
+Be sure to wait until you see 🟢 Model pulled, you are now allowed to run the localhost 🟢, which means you can move on to Usage.
 
 ---
 
 ## Usage
 
 ### Web Interface:
+- Be sure you are on your private web account.
 - Visit http://localhost:8080/login.
 - Login/Register your account
 - You'll then be redirected to the SQL Formatter Page
@@ -79,7 +74,7 @@ docker-compose build
 ### API Documentation:
 - The project uses **Swagger** to document the REST API.
 - Access the API docs at `http://localhost:8080/api/docs/` once the app is running.
-- Here you can test a few APIs
+- Here you can try a few APIs
    - User creation
    - User auth
    - Formatter Post
@@ -135,7 +130,7 @@ This will run the tests based off which application you are testing, replace the
 - **Django Rest Framework**: For building the API and handling serialization.
 - **Docker**: For containerizing the application.
 
----/
+---
 
 ## Future Improvements
 
@@ -153,7 +148,6 @@ This will run the tests based off which application you are testing, replace the
 
 ---
 
-``
 ## Author
 
 Built by **Dhruv (dhruv@galactica.gg)**.

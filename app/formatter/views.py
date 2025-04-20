@@ -6,7 +6,6 @@ from rest_framework import status
 from rest_framework.permissions import IsAuthenticated
 from drf_spectacular.utils import extend_schema
 from django.shortcuts import render
-from django.contrib.auth.decorators import login_required
 import ollama
 
 # Create your views here
@@ -27,12 +26,11 @@ def llm_format(raw_Query):
 )
 @api_view(['POST', 'GET'])
 @permission_classes([IsAuthenticated])
-@login_required
 def format_query_view(request):
     if request.method == 'POST':
-        serializer_class = QuerySerializer(data=request.data)
-        if serializer_class.is_valid():
-            raw_Query = serializer_class.validated_data['raw_Query']
+        serializer = QuerySerializer(data=request.data)
+        if serializer.is_valid():
+            raw_Query = serializer.validated_data['raw_Query']
             formatted_Query = llm_format(raw_Query)
             query_instance = Query(raw_Query=raw_Query,formatted_Query=formatted_Query,user=request.user)
             query_instance.save()
@@ -40,17 +38,17 @@ def format_query_view(request):
                 return render(request, 'formatter/result_snippet.html', {'formatted_Query': formatted_Query})
             return Response({'formatted_Query': formatted_Query, 'id': query_instance.id})
         else:
-            return Response(serializer_class.errors, status=status.HTTP_400_BAD_REQUEST)
+            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
 
     elif request.method == 'GET':
         queries = Query.objects.filter(user=request.user)
-        serializer_class = QuerySerializer(queries, many=True)
+        serializer = QuerySerializer(queries, many=True)
         if "text/html" in request.META.get("HTTP_ACCEPT", ""):
             return render(request, 'formatter/format_query.html', {'queries': queries})
         else:
-            return Response(serializer_class.data, status=status.HTTP_200_OK)
+            return Response(serializer.data, status=status.HTTP_200_OK)
 
 
 
