@@ -35,6 +35,7 @@ cd SQL_FORMATTER
 
 Follow the instructions at [Docker's official website](https://www.docker.com/get-started) to install Docker.
 
+**DONT FORGET TO CREATE A USER AND INCREASE MEMORY LIMIT TO 8GB AND CPU LIMIT TO 8**
 
 ### 3. Build and Run with Docker:
 
@@ -63,12 +64,13 @@ docker-compose build
 ## Usage
 
 ### Web Interface:
-- Visit `http://localhost:8080/login`.
+- Visit http://localhost:8080/login.
 - Login/Register your account
 - You'll then be redirected to the SQL Formatter Page
 - Paste your raw SQL query in the input form and click "Format SQL."
 - You'll then be redirected to a results page
 - Past formatted SQL queries will be displayed below the input form.
+- To logout, go back to http://localhost:8080/login
 
 ---
 
@@ -133,7 +135,7 @@ This will run the tests based off which application you are testing, replace the
 - **Django Rest Framework**: For building the API and handling serialization.
 - **Docker**: For containerizing the application.
 
----
+---/
 
 ## Future Improvements
 
@@ -151,6 +153,7 @@ This will run the tests based off which application you are testing, replace the
 
 ---
 
+``
 ## Author
 
 Built by **Dhruv (dhruv@galactica.gg)**.
