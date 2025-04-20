@@ -53,6 +53,13 @@ This will build the project, set up the containers, pull ollama, and start the a
 
 Be sure to wait until you see 🟢 Model pulled, you are now allowed to run the localhost 🟢, which means you can move on to Usage.
 
+Once done with the application run
+```bash
+docker-compose down
+```
+
+and if you wish to clear the volumes (all the data stored within the application) include --volumes at the end of the command.
+
 ---
 
 ## Usage
