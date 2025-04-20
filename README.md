@@ -63,6 +63,7 @@ Be sure to wait until you see 🟢 Model pulled, you are now allowed to run the 
 - Login/Register your account
 - You'll then be redirected to the SQL Formatter Page
 - Paste your raw SQL query in the input form and click "Format SQL."
+- Depending on your input, the LLM could take up to 1-2 minutes, but often should output within 30 seconds.
 - You'll then be redirected to a results page
 - Past formatted SQL queries will be displayed below the input form.
 - To logout, go back to http://localhost:8080/login
