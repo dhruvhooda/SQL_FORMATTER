@@ -19,6 +19,9 @@
 
 ## Installation and Setup
 
+**⚠️ This is a heavy Application, Ensure you have a decent machine with limited background applications running before running ⚠️**
+
+
 ### 1. Clone the repository:
 
 HTTP:
