@@ -48,6 +48,8 @@ This Application requires a bit of power due to its usage of a LLM, ensure your 
 
 **If you are using Mac or intialized the SH file on your windows machine**
 
+First make sure Docker Desktop is up and running.
+
 ```bash
 docker-compose up
 ```
